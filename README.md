@@ -14,57 +14,30 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+FRONTEND-SERVER
+Denna kod har några säkerhetsaspekter att överväga:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lösenords- och e-posthantering: 
+Lösenord och e-post sparas i tillståndsvariabler (useState). Det är bra att de används för att hålla reda på användarens inmatning, men det är viktigt att se till att känslig information inte exponeras på felaktiga platser eller sätt.
 
-### `npm run build`
+Autentisering:
+Access token lagras i sessionslagring (sessionStorage). Sessionslagring är normalt säkrare än lokallagring, men det är fortfarande viktigt att se till att den hanteras korrekt och att tokens inte läcker ut på grund av sårbarheter som XSS (Cross-Site Scripting).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Autentiseringsheaders:
+När du hämtar data från backend, skickas en Authorization-header med access token. Detta är standardpraxis för säker kommunikation med en server.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Hantering av API-anrop:
+Användningen av fetch för att göra API-anrop är bra, men det är viktigt att hantera fel och statuskoder korrekt. Det görs genom att kontrollera response.ok och behandla olika situationer.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Hantering av notifieringar:
+Notifieringar används för att meddela användaren om olika händelser. Denna hantering verkar vara ordentlig och ger användbara meddelanden. Det är viktigt att undvika att läcka för mycket information till slutanvändaren, särskilt om det kan vara säkerhetskänslig information.
+Sessionshantering:
+Inloggning och utloggning hanteras genom att sätta och ta bort access token från sessionslagring. Det är en standardmetod, men det är viktigt att se till att sessionen löper ut korrekt och att användaren alltid loggas ut när det behövs.
 
-### `npm run eject`
+CORS (Cross-Origin Resource Sharing):
+Om frontend-applikationen (http://localhost:3000, antas jag) och backend-servern (http://localhost:3001 och http://localhost:3002) körs på olika domäner, måste CORS vara korrekt konfigurerat på backend för att tillåta begäranden från frontend.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Känslig information i källkoden:
+Hållningen av känslig information, som URL:er och tokens, direkt i källkoden bör undvikas i produktion. Det är säkrare att använda miljövariabler eller konfigurationsfiler för att hantera sådan information.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Det är alltid viktigt att hålla koll på säkerhetsaspekterna och vara medveten om potentiella hot. Kodgranskning och regelbundna säkerhetsrevisioner är en del av god praxis för att säkerställa att en webbapplikation är så säker som möjligt.
