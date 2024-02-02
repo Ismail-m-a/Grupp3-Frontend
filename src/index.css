@@ -1,0 +1,90 @@
+/* App.css */
+
+.App {
+  font-family: 'Arial', sans-serif;
+  background-color: #ecf0f1; /* Ljusblågrå bakgrundsfärg */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notification {
+  background-color: #e74c3c;
+  color: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.login-container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.input-field {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-button {
+  background-color: #3498db; /* Blå knappfärg */
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-button:hover {
+  background-color: #2980b9; /* Mörkare nyans vid hover */
+}
+
+/* Additional styles for logged-in state */
+p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #3498db; /* Blå knappfärg */
+  color: white;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #2980b9; /* Mörkare nyans vid hover */
+}
+
+
+/* Lägg till marginal mellan "Fetch Data" och "Logout" knappar */
+
+.logout-button {
+  margin-top: 10px; /* Justera detta värde efter behov */
+ 
+}
+
